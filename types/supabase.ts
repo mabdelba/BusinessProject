@@ -12,21 +12,21 @@ export type Database = {
       business: {
         Row: {
           created_at: string
-          email: string | null
-          id: number
-          name: string | null
+          email: string
+          id: string
+          name: string
         }
         Insert: {
           created_at?: string
-          email?: string | null
-          id?: number
-          name?: string | null
+          email: string
+          id?: string
+          name: string
         }
         Update: {
           created_at?: string
-          email?: string | null
-          id?: number
-          name?: string | null
+          email?: string
+          id?: string
+          name?: string
         }
         Relationships: []
       }
