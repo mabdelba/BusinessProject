@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import React from "react";
+import ToastError from "@/components/toast/ToastError";
 
 const NewBusiness = ({
     searchParams,
@@ -17,10 +18,13 @@ const NewBusiness = ({
         } = await supabase.auth.getUser();
 
         if (!user?.email) {
-          throw new Error("unauthenticated");
+            throw new Error("unauthenticated");
         }
 
         const businessName = formData.get("name") as string;
+        if (businessName.length === 0) {
+            redirect("/newbusiness?message=failed to add business");
+        }
         const { error } = await supabase
             .from("business")
             .insert({ email: user.email, name: businessName });
@@ -58,15 +62,13 @@ const NewBusiness = ({
                             Add business
                         </button>
                         <Link
-                            href={'/'}
+                            href={"/"}
                             className="bg-gradient-to-r border text-black flex justify-center font-bold py-2 px-4 rounded-md mt-4 hover:bg-palette-beige transition-all ease-in-out duration-500"
                         >
                             Cancel
                         </Link>
                         {searchParams["message"] && (
-                            <span className="text-red-700">
-                                {searchParams["message"]}
-                            </span>
+                            <ToastError message={searchParams["message"]} />
                         )}
                     </form>
                 </div>

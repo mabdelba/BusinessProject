@@ -18,7 +18,6 @@ const Login = ({ searchParams }: T) => {
         });
 
         if (error) {
-            console.log({ error });
             redirect(`/login?message=failed to sign in: ${error.message}`);
         }
         redirect("/");
@@ -42,7 +41,7 @@ const Login = ({ searchParams }: T) => {
     }
 
     return (
-        <div className="w-screen h-screen flex justify-center items-center font-Raleway ">
+        <div className="w-screen h-screen flex  justify-center items-center font-Raleway ">
             <form className="flex flex-col border p-5 md:p-10  xl:p-20 min-w-[20rem] w-1/2 max-w-[30rem] rounded-2xl">
                 <h1 className="text-btn-palette-green text-2xl mb-8 font-extrabold ">
                     Login page{" "}
@@ -75,14 +74,12 @@ const Login = ({ searchParams }: T) => {
                 >
                     Sign-up
                 </button>
+                {searchParams["message"] && (
+                    <p className="mt-2 md:mt-3 text-red-400">
+                        {searchParams["message"]}
+                    </p>
+                )}
             </form>
-            {/* <h1 className="mx-auto">Login</h1>
-                <input type="email" name="email" className="border" />
-                <input type="password" name="password" className="border" />
-                <button className="bg-green-200" formAction={login}>Sign in</button>
-                <button className="bg-green-500" formAction={signup}>Sign up</button> */}
-
-            {/* {searchParams["message"] && <ToastError message={searchParams["message"]}  />} */}
         </div>
     );
 };

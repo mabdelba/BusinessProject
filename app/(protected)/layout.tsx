@@ -23,16 +23,23 @@ const layout = async ({ children }: { children: ReactNode }) => {
     };
     return (
         <>
-            <div className="w-full h-screen  relative ">
-                <div id="navbar" className="h-20 fixed border-[1px] border-palette-sky w-full flex justify-between px-2 md:px-5 items-center">
-                    <h1 className="w-fit font-Raleway font-bold text-palette-blue text-lg">{user.email}</h1>
+            <div className="w-full h-screen  relative min-w-[280px] ">
+                <div
+                    id="navbar"
+                    className="h-20 fixed border-b-[1px] border-palette-sky w-full flex justify-between px-2 md:px-5 items-center"
+                >
+                    <h1 className="w-fit font-Raleway font-bold text-palette-blue text-lg">
+                        {user.email}
+                    </h1>
                     <form action={logout} className="w-fit ">
                         <button className="  bg-palette-blue px-5 py-2 rounded-lg hover:scale-90 transtion-all duration-500 text-white">
                             Logout
                         </button>
                     </form>
                 </div>
-                <h1 className="mt-52 font-Raleway  text-xl md:text-2xl xl:text-5xl 2xl:text-7xl text-center font-bold">Welcome to Our Dashboard</h1>
+                <h1 className="mt-52 font-Raleway  text-xl md:text-2xl xl:text-5xl 2xl:text-7xl text-center font-bold">
+                    Welcome to Our Dashboard
+                </h1>
                 {children}
             </div>
         </>

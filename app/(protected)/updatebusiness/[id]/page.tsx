@@ -1,3 +1,4 @@
+import ToastError from "@/components/toast/ToastError";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -29,13 +30,16 @@ const UpdateBusiness = async ({
         "use server";
         const supabase = createClient();
         const newName = formData.get("name") as string;
+        if (newName.length === 0) {
+            redirect("/newbusiness?message=failed to add business");
+        }
         const { error } = await supabase
             .from("business")
             .update({ name: newName })
             .eq("id", params.id);
 
         if (error) {
-            console.log({ error });
+            
             redirect(`/updatebusiness/${params.id}?message=${error.message}`);
         }
         redirect("/");
@@ -91,15 +95,13 @@ const UpdateBusiness = async ({
                             </button>
                         </div>
                         <Link
-                            href={'/'}
+                            href={"/"}
                             className="bg-gradient-to-r border text-black flex justify-center font-bold py-2 px-4 rounded-md  hover:bg-palette-beige transition-all ease-in-out duration-500"
                         >
                             Cancel
                         </Link>
                         {searchParams["message"] && (
-                            <span className="text-red-700">
-                                {searchParams["message"]}
-                            </span>
+                            <ToastError message={searchParams["message"]} />
                         )}
                     </form>
                 </div>
