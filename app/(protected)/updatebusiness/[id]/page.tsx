@@ -57,45 +57,45 @@ const UpdateBusiness = async ({
     };
 
     return (
-        <div className="w-screen mt-20 h-[80vh]  flex justify-center items-center">
+        <div className="w-screen mt-20 h-[50vh]  flex justify-center items-center font-Raleway pr-5">
             <div className="gap-4 flex flex-col relative ">
                 <div className="w-full flex flex-col items-end space-x-6 ">
                     <Link
                         href={"/"}
-                        className="bg-green-500 px-4 py-3 text-white font-medium "
+                        className="bg-palette-green px-5 py-2 rounded-lg hover:scale-90 transtion-all duration-500 text-white "
                     >
                         All businesses
                     </Link>
-                    <form className="px-30  flex flex-col space-y-3 py-5">
+                    <form className="px-30  flex flex-col space-y-3 py-4">
                         <label htmlFor="name">
                             Business Name
                             <input
                                 id="name"
                                 name="name"
                                 placeholder={business.name}
-                                className="block min-w-20 w-72 h-12 border-2 px-3"
+                                className="bg-gray-200 w-full m text-gray-800 border border-palette-sky rounded-md p-2 my-2   focus:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-palette-blue transition ease-in-out duration-150"
                             />
                         </label>
                         <div className="w-full h-12 flex justify-between space-x-3 ">
                             <button
                                 formAction={editBusiness}
-                                className="  w-1/2 h-full text-white bg-blue-400 "
+                                className="bg-gradient-to-r bg-palette-blue text-white font-bold py-2 px-4 rounded-md  hover:bg-palette-sky hover:text-black transition-all ease-in-out duration-500 w-1/2 h-full"
                             >
                                 Save
                             </button>
                             <button
                                 formAction={deleteBusiness}
-                                className="  w-1/2 h-full text-white bg-red-600 "
+                                className="  bg-gradient-to-r bg-red-400 text-white font-bold py-2 px-4 rounded-md  hover:bg-red-300  transition-all ease-in-out duration-500 w-1/2 h-full"
                             >
                                 Delete
                             </button>
                         </div>
-                        <button
-                            type="reset"
-                            className="mx-auto  w-full h-12 text-black bg-blue-200 "
+                        <Link
+                            href={'/'}
+                            className="bg-gradient-to-r border text-black flex justify-center font-bold py-2 px-4 rounded-md  hover:bg-palette-beige transition-all ease-in-out duration-500"
                         >
                             Cancel
-                        </button>
+                        </Link>
                         {searchParams["message"] && (
                             <span className="text-red-700">
                                 {searchParams["message"]}
